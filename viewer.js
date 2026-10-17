@@ -72,7 +72,7 @@ for (const p of projects) {
   });
   const observer = new IntersectionObserver(entries => {
     inView = entries[0].isIntersecting;
-    if (inView && v.dataset.src) {v.src = v.dataset.src;delete v.dataset.src;}
+    if (inView && v.dataset.src) {v.setAttribute('src', v.dataset.src);delete v.dataset.src;}
     if (!inView) v.autoRotate = false;
     else if (!paused && rotate.getAttribute('aria-pressed') === 'true') v.autoRotate = true;
   }, {rootMargin:'150px'});
