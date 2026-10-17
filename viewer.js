@@ -78,7 +78,7 @@ for (const p of projects) {
   }, {rootMargin:'150px'});
   observer.observe(v);
   for (const b of views) b.addEventListener('click', () => {
-    interacted = true;setRotation(false);v.cameraOrbit = b.dataset.view;v.fieldOfView = '30deg';v.cameraTarget = 'auto auto auto';
+    interacted = true;setRotation(false);v.resetTurntableRotation();v.cameraOrbit = b.dataset.view;v.fieldOfView = '30deg';v.cameraTarget = 'auto auto auto';
     views.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
   });
   rotate.addEventListener('click', () => {
@@ -102,8 +102,8 @@ for (const p of projects) {
   // A short camera introduction runs once, only before the visitor takes control.
   v.addEventListener('load', () => {
     if (!paused && !interacted && inView) {
-      v.cameraOrbit = '45deg 70deg 105%';
-      setTimeout(() => {if (!paused && !interacted) v.cameraOrbit = '30deg 65deg 105%';}, 900);
+      v.cameraOrbit = p.id === 'mail-box' ? '225deg 70deg 105%' : '45deg 70deg 105%';
+      setTimeout(() => {if (!paused && !interacted) v.cameraOrbit = views[0].dataset.view;}, 900);
     }
   }, {once:true});
 }
